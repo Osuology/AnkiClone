@@ -11,17 +11,20 @@
             <RowDefinition Height="321*"/>
             <RowDefinition Height="113*"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="cardInput" HorizontalAlignment="Center" Height="51" Margin="0,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" KeyDown="inputKeyDown" Grid.RowSpan="2"/>
+        <TextBox ToolTip="Click to type an answer." x:Name="cardInput" HorizontalAlignment="Center" Height="51" Margin="0,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" KeyDown="inputKeyDown" Grid.RowSpan="2"/>
         <Label x:Name="cardLabel" HorizontalAlignment="Center" Margin="0,53,0,0" VerticalAlignment="Top" Width="206" Height="116" BorderThickness="2,2,2,2" FontSize="36">
             <Label.Effect>
                 <DropShadowEffect/>
             </Label.Effect>
             <TextBlock x:Name="cardTextBlock" TextWrapping="Wrap" TextAlignment="Center" Width="196" Height="106"/>
         </Label>
-        <Button x:Name="submitButton" Content="Submit" HorizontalAlignment="Center" Height="28" Margin="0,38,0,0" VerticalAlignment="Top" Width="144" Click="submitClicked" Grid.Row="1"/>
+        <Button ToolTip="Click to submit your answer." x:Name="submitButton" Content="Submit" HorizontalAlignment="Center" Height="28" Margin="0,38,0,0" VerticalAlignment="Top" Width="144" Click="submitClicked" Grid.Row="1"/>
         <Menu VerticalAlignment="Top" >
             <MenuItem Header="_File">
                 <MenuItem Header="_New Deck"/>
+                <MenuItem x:Name="recentDeckMenu" Header="_Recent Decks...">
+                   <!-- recent decks will be loaded as MenuItem's here -->
+                </MenuItem>
                 <MenuItem Header="_Load Deck" Click="loadDeckClick"/>
                 <MenuItem Header="_Save Deck" Click="saveDeck"/>
                 <MenuItem Header="_Save Deck As..."/>

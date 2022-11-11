@@ -1,0 +1,11 @@
+﻿To-Do List:
+	- Add keyboard shortcuts (Ctrl+S, Ctrl+L, etc. etc.)
+	- Add labels
+	- Add currently accessed deck (Save Deck vs Save Deck as... Capability)
+	- {DONE} Recently saved decks 
+	- Memorability system
+	- Add theming
+	- Add help/tutorial
+	- Add tooltips
+	- Upon loading a new deck, refresh loaded card.
+	- Fix layout adjustment for window size

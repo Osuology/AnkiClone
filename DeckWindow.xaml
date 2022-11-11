@@ -7,15 +7,15 @@
         mc:Ignorable="d"
         Title="DeckWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="doneButton" Content="Done" HorizontalAlignment="Center" Height="23" Margin="0,339,0,0" VerticalAlignment="Top" Width="80" Click="doneButtonClick"/>
-        <ListBox x:Name="cardList" HorizontalAlignment="Left" Height="194" Margin="603,0,0,0" VerticalAlignment="Center" Width="146" SelectionChanged="cardListSelected" IsSynchronizedWithCurrentItem="False"/>
-        <TextBox x:Name="cardTextBox" HorizontalAlignment="Center" Margin="0,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" Height="70" TextChanged="cardTextChanged"/>
-        <Button x:Name="addCardButton" Content="Add" HorizontalAlignment="Left" Margin="656,324,0,0" VerticalAlignment="Top" Click="addCardClick"/>
-        <ListBox x:Name="answersList" HorizontalAlignment="Left" Height="132" Margin="295,170,0,0" VerticalAlignment="Top" Width="105" SelectionChanged="answerSelected"/>
-        <Button x:Name="addAnswerButton" Content="Add Answer" HorizontalAlignment="Left" Margin="431,226,0,0" VerticalAlignment="Top" Click="addAnswer"/>
+        <Button ToolTip="Click to close this window." x:Name="doneButton" Content="Done" HorizontalAlignment="Center" Height="23" Margin="0,339,0,0" VerticalAlignment="Top" Width="80" Click="doneButtonClick"/>
+        <ListBox ToolTip="Click to select a card to edit." x:Name="cardList" HorizontalAlignment="Left" Height="194" Margin="603,0,0,0" VerticalAlignment="Center" Width="146" SelectionChanged="cardListSelected" IsSynchronizedWithCurrentItem="False"/>
+        <TextBox ToolTip="Click to edit card title." x:Name="cardTextBox" HorizontalAlignment="Center" Margin="0,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" Height="70" TextChanged="cardTextChanged"/>
+        <Button ToolTip="Click to add a new card." x:Name="addCardButton" Content="Add" HorizontalAlignment="Left" Margin="656,324,0,0" VerticalAlignment="Top" Click="addCardClick"/>
+        <ListBox ToolTip="Click to select an answer." x:Name="answersList" HorizontalAlignment="Left" Height="132" Margin="295,170,0,0" VerticalAlignment="Top" Width="105" SelectionChanged="answerSelected"/>
+        <Button ToolTip="Click to add the above text as a new answer." x:Name="addAnswerButton" Content="Add Answer" HorizontalAlignment="Left" Margin="431,226,0,0" VerticalAlignment="Top" Click="addAnswer"/>
         <Label x:Name="answersLabel" Content="Answers" HorizontalAlignment="Left" Height="28" Margin="316,147,0,0" VerticalAlignment="Top" Width="66"/>
-        <TextBox x:Name="answerTextBox" HorizontalAlignment="Left" Height="18" Margin="431,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" TextChanged="answerAddTextChanged" GotFocus="answerTextFocused"/>
-        <Button x:Name="removeAnswerButton" Content="-" HorizontalAlignment="Left" Margin="405,170,0,0" VerticalAlignment="Top" Width="21" IsEnabled="False" Click="removeAnswerClick"/>
+        <TextBox ToolTip="Click to type a new answer." x:Name="answerTextBox" HorizontalAlignment="Left" Height="18" Margin="431,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" TextChanged="answerAddTextChanged" GotFocus="answerTextFocused"/>
+        <Button ToolTip="Click to remove the selected answer." x:Name="removeAnswerButton" Content="-" HorizontalAlignment="Left" Margin="405,170,0,0" VerticalAlignment="Top" Width="21" IsEnabled="False" Click="removeAnswerClick"/>
 
     </Grid>
 </Window>

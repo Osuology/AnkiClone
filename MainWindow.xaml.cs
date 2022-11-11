@@ -18,7 +18,6 @@ using System.Windows.Shapes;
 
 namespace AnkiClone
 {
-
     public class Deck
     {
         public List<Card> Cards { get { return GetCards();  } set { SetCards(value); } }
@@ -125,12 +124,72 @@ namespace AnkiClone
     /// </summary>
     public partial class MainWindow : Window
     {
+        public const string RECENTS_PATH = "recents.json";
+        
         Deck deck;
+        List<string> recentDecks;
         public MainWindow()
         {
             deck = new Deck();
             InitializeComponent();
+            LoadRecentDecks();
             PickRandomCard();
+        }
+
+        public void LoadRecentDecks()
+        {
+            recentDecks = new List<string>();
+            if (File.Exists(RECENTS_PATH)) {
+                using (StreamReader sr = new(RECENTS_PATH))
+                {
+                    string jsonText = sr.ReadToEnd();
+#pragma warning disable CS8601 // Possible null reference assignment.
+                    recentDecks = JsonSerializer.Deserialize<List<string>>(jsonText);
+#pragma warning restore CS8601 // Possible null reference assignment.
+                    if (recentDecks == null)
+                        recentDecks = new List<string>();
+                    else
+                    {
+                        // add menuitem's
+                        foreach (string path in recentDecks)
+                        {
+                            var item = new MenuItem();
+                            item.Header = path;
+                            item.Click += loadRecentDeck;
+                            if (recentDeckMenu.Items.Count < 100)
+                            {
+                                recentDeckMenu.Items.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                File.Create(RECENTS_PATH);
+            }
+        }
+
+        public void UpdateRecentDecks(string path)
+        {
+            if (!recentDecks.Contains(path))
+            {
+                recentDecks.Add(path);
+                using (StreamWriter sw = new StreamWriter(RECENTS_PATH))
+                {
+                    string jsonText = JsonSerializer.Serialize(recentDecks);
+                    sw.Write(jsonText);
+                }
+                
+                recentDeckMenu.Items.Clear();
+                foreach (string deckPath in recentDecks)
+                {
+                    var item = new MenuItem();
+                    item.Header = deckPath;
+                    item.Click += loadRecentDeck;
+                    recentDeckMenu.Items.Add(item);
+                }
+            }
         }
 
         public void Update()
@@ -172,8 +231,11 @@ namespace AnkiClone
         private void saveDeck(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            if (saveFileDialog.ShowDialog() == true)
+            if (saveFileDialog.ShowDialog() == true) 
+            { 
                 deck.SaveDeckTo(saveFileDialog.FileName);
+                UpdateRecentDecks(saveFileDialog.FileName);
+            }
         }
 
         private void loadDeckClick(object sender, RoutedEventArgs e)
@@ -182,7 +244,14 @@ namespace AnkiClone
             if (openFileDialog.ShowDialog() == true)
             {
                 deck.LoadFrom(openFileDialog.FileName);
+                UpdateRecentDecks(openFileDialog.FileName);
             }
+        }
+
+        private void loadRecentDeck(object sender, RoutedEventArgs e)
+        {
+            string path = (string)((MenuItem)sender).Header;
+            deck.LoadFrom(path);
         }
     }
 }
