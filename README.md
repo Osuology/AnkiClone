@@ -1,1 +1,1 @@
-# AnkiClone
+# Flashcard Memorizer
