@@ -253,5 +253,12 @@ namespace FlashcardMemorizer
             string path = (string)((MenuItem)sender).Header;
             deck.LoadFrom(path);
         }
+
+        private void openNotes(object sender, RoutedEventArgs e)
+        {
+            NotesWindow notesWindow = new NotesWindow();
+            notesWindow.Show();
+            notesWindow.Owner = this;
+        }
     }
 }

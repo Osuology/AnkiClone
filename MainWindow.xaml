@@ -32,6 +32,7 @@
             <MenuItem Header="Card">
                 <MenuItem x:Name="newCard" Header="New Card" Click="newCardClick"/>
             </MenuItem>
+            <MenuItem x:Name="notesMenu" Header="Notes" Click="openNotes"/>
         </Menu>
 
     </Grid>
